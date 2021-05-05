@@ -37,4 +37,10 @@ class MenuScene : CScene{
             }
         }
     }
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for button in MenuButtons{
+            button.fadeIn()
+        }
+        
+    }
 }

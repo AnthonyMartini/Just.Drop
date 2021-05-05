@@ -24,6 +24,10 @@
 		7F881BB0263BA6C10024CD1F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F881BAF263BA6C10024CD1F /* Launch Screen.storyboard */; };
 		7F881BB5263BA75A0024CD1F /* Launch Screen.storyboard in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F881BAF263BA6C10024CD1F /* Launch Screen.storyboard */; };
 		7F881BC4263CA21A0024CD1F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F881BC3263CA2190024CD1F /* GameScene.swift */; };
+		A97BC5ED2642FE9200949740 /* ShopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BC5EC2642FE9200949740 /* ShopMenu.swift */; };
+		A97BC5EF264307C800949740 /* SquareShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BC5EE264307C800949740 /* SquareShop.swift */; };
+		A97BC5F126430D8000949740 /* UpgradesShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BC5F026430D8000949740 /* UpgradesShop.swift */; };
+		A97BC5F326430F3500949740 /* InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BC5F226430F3500949740 /* InfoPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +70,10 @@
 		7F881BA3263BA2590024CD1F /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
 		7F881BAF263BA6C10024CD1F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7F881BC3263CA2190024CD1F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		A97BC5EC2642FE9200949740 /* ShopMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopMenu.swift; sourceTree = "<group>"; };
+		A97BC5EE264307C800949740 /* SquareShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareShop.swift; sourceTree = "<group>"; };
+		A97BC5F026430D8000949740 /* UpgradesShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradesShop.swift; sourceTree = "<group>"; };
+		A97BC5F226430F3500949740 /* InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +130,10 @@
 				7F881B4F263B9F030024CD1F /* AppDelegate.swift */,
 				7F881B51263B9F030024CD1F /* GameScene.sks */,
 				7F881BC3263CA2190024CD1F /* GameScene.swift */,
+				A97BC5EC2642FE9200949740 /* ShopMenu.swift */,
+				A97BC5EE264307C800949740 /* SquareShop.swift */,
+				A97BC5F026430D8000949740 /* UpgradesShop.swift */,
+				A97BC5F226430F3500949740 /* InfoPage.swift */,
 				7F881B55263B9F030024CD1F /* MainMenu.swift */,
 				7F881B57263B9F030024CD1F /* GameViewController.swift */,
 				7F881B59263B9F030024CD1F /* Main.storyboard */,
@@ -303,13 +315,17 @@
 			files = (
 				7F881BA4263BA2590024CD1F /* CScene.swift in Sources */,
 				7F509E1E2640EBA200A1E8A9 /* Piller.swift in Sources */,
+				A97BC5ED2642FE9200949740 /* ShopMenu.swift in Sources */,
 				7F881B56263B9F030024CD1F /* MainMenu.swift in Sources */,
 				7F881BA8263BA2590024CD1F /* ShopScene.swift in Sources */,
 				7F881BC4263CA21A0024CD1F /* GameScene.swift in Sources */,
+				A97BC5F126430D8000949740 /* UpgradesShop.swift in Sources */,
 				7F881BA7263BA2590024CD1F /* ShopButton.swift in Sources */,
 				7F881BA5263BA2590024CD1F /* MenuButton.swift in Sources */,
 				7F881BA6263BA2590024CD1F /* MenuScene.swift in Sources */,
+				A97BC5F326430F3500949740 /* InfoPage.swift in Sources */,
 				7F881B58263B9F030024CD1F /* GameViewController.swift in Sources */,
+				A97BC5EF264307C800949740 /* SquareShop.swift in Sources */,
 				7F881B50263B9F030024CD1F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

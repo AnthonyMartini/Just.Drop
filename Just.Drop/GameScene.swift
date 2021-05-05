@@ -36,10 +36,14 @@ class GameScene : CScene, SKPhysicsContactDelegate{
     }
     
     
+    
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         self.physicsWorld.contactDelegate = self
+        
+        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GameUpdate), userInfo: nil, repeats: true)
         //Labels
+        
         scoreLabel = SKLabelNode(text: "0")
         createLabel(scoreLabel, 70 * multiplier, CGPoint(x: 0, y: 440 * multiplier),font: "Verdana-Bold",color: .white)
         
@@ -57,9 +61,9 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         //Create starting bars
         
         createPiller(CGPoint(x: -212.5 * multiplier, y: 0 * multiplier),true)
-        createPiller(CGPoint(x: 12.5 * multiplier, y: -200 * multiplier),true)
-        createPiller(CGPoint(x: 237.5 * multiplier, y: -400 * multiplier),true)
-        createPiller(CGPoint(x: 462.5 * multiplier, y: -600 * multiplier),true)
+        createPiller(CGPoint(x: 112.5 * multiplier, y: -266.667 * multiplier),true)
+        createPiller(CGPoint(x: 412.5 * multiplier, y: -533.333 * multiplier),true)
+        
         
         //Jump Buttons
         
@@ -76,14 +80,14 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         boostButton.zPosition = 4
         Cont.addChild(boostButton)
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(GameUpdate), userInfo: nil, repeats: true)
+        
         
     }
     
     @objc func GameUpdate(){
         ticks += 1
         if ticks % 1 == 0{
-            createPiller(CGPoint(x: 462.5 * multiplier, y: -600 * multiplier),true)
+            createPiller(CGPoint(x: 562.5 * multiplier, y: -666.666 * multiplier),true)
         }
         
         
@@ -97,11 +101,10 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         newpillar.physicsBody?.isDynamic = false
         newpillar.physicsBody?.categoryBitMask = CategoryMask.good.rawValue
         newpillar.physicsBody?.contactTestBitMask = CategoryMask.square.rawValue
-        newpillar.run(SKAction.sequence([SKAction.move(by: CGVector(dx: -900 * multiplier, dy: 800), duration: 3), SKAction.removeFromParent()]))
+        newpillar.run(SKAction.sequence([SKAction.move(by: CGVector(dx: -1200 * multiplier, dy: 1066.667), duration: 4), SKAction.removeFromParent()]))
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        print("Contact")
         let conA = contact.bodyA.node
         let conB = contact.bodyB.node
         

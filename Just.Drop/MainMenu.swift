@@ -54,17 +54,16 @@ class MainMenu: MenuScene{
         let playButton = MenuButton(imageNamed: "Play")
         playButton.Create(CGSize(width: 220 * multiplier, height: 110 * multiplier), CGPoint(x: 0, y: -175 * multiplier),name: "Play", trgt: GameScene(size: self.size))
         MenuButtons.append(playButton)
-
         Cont.addChild(playButton)
         
         let ShopButton = MenuButton(imageNamed: "Shop")
-        ShopButton.Create(CGSize(width: 75 * multiplier, height: 75 * multiplier), CGPoint(x: 175 * multiplier, y: -175 * multiplier), name: "Shop", trgt: MainMenu(size: self.size))
+        ShopButton.Create(CGSize(width: 75 * multiplier, height: 75 * multiplier), CGPoint(x: 175 * multiplier, y: -175 * multiplier), name: "Shop", trgt: ShopMenu(size: self.size))
         MenuButtons.append(ShopButton)
 
         Cont.addChild(ShopButton)
         
         let InfoButton = MenuButton(imageNamed: "Info")
-        InfoButton.Create(CGSize(width: 75 * multiplier, height: 75 * multiplier), CGPoint(x: -175 * multiplier, y: -175 * multiplier), name: "Info", trgt: MainMenu(size: self.size))
+        InfoButton.Create(CGSize(width: 75 * multiplier, height: 75 * multiplier), CGPoint(x: -175 * multiplier, y: -175 * multiplier), name: "Info", trgt: InfoPage(size: self.size))
         MenuButtons.append(InfoButton)
         Cont.addChild(InfoButton)
         
@@ -100,9 +99,8 @@ class MainMenu: MenuScene{
         
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for button in MenuButtons{
-            button.fadeIn()
-        }
+        
+        super.touchesCancelled(touches, with: event)
         
     }
     
