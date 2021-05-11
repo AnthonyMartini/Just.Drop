@@ -32,6 +32,18 @@ class GameScene : CScene, SKPhysicsContactDelegate{
     var jumpenabled = false
     var boostenabled = false
     
+    var colors : [String: UIColor] = [
+        "Red" : .red,
+        "Blue" : .blue,
+        "Green" : .green,
+        "Yellow" : .yellow,
+        "Orange" : .orange,
+        "Purple" : .magenta,
+        "Magenta" : .magenta,
+        "Cyan" : .cyan,
+        "Black" : .black,
+    ]
+    
     
     
     //buttons
@@ -67,9 +79,14 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         scoreLabel = SKLabelNode(text: "0")
         createLabel(scoreLabel, 70 * multiplier, CGPoint(x: 0, y: 440 * multiplier),font: "Verdana-Bold",color: .white)
         
+        //Square Color:
+        let squareColor = UserDefaults.standard.string(forKey: "SquareColor") ?? "Red"
+        
+        
+        
         //Create square
         bounceSprite = SKSpriteNode()
-        bounceSprite.color = .red
+        bounceSprite.color = colors[squareColor] ?? .red
         bounceSprite.size = CGSize(width: 125 * multiplier, height: 125 * multiplier)
         bounceSprite.position = CGPoint(x: -100 * multiplier, y: 200 * multiplier)
         bounceSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 125 * multiplier, height: 125 * multiplier))

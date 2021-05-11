@@ -110,6 +110,7 @@ class InfoPage: CScene{
             if backButton.contains(pos) && firstTouch == "Back"{
                 moveScenes(MainMenu())
             }
+            backButton.fadeIn()
         }
     }
    

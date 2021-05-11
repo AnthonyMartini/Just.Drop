@@ -23,7 +23,7 @@ class ShopMenu: MenuScene{
         
         //Need to find out what word I used for Just.Drop original
         
-        stash = UserDefaults.standard.integer(forKey: "Stash")
+        stash = UserDefaults.standard.integer(forKey: "Coins")
         let stashLabel = SKLabelNode(text: "Stash: \(stash) Coins")
         createLabel(stashLabel, 35 * multiplier, CGPoint(x: 0, y: 375 * multiplier),font: "Verdana-Bold",color: .white)
         

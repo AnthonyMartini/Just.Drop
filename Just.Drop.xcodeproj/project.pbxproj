@@ -28,6 +28,7 @@
 		A97BC5EF264307C800949740 /* SquareShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BC5EE264307C800949740 /* SquareShop.swift */; };
 		A97BC5F126430D8000949740 /* UpgradesShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BC5F026430D8000949740 /* UpgradesShop.swift */; };
 		A97BC5F326430F3500949740 /* InfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BC5F226430F3500949740 /* InfoPage.swift */; };
+		A97BC5F5264B068700949740 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97BC5F4264B068700949740 /* TODO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		A97BC5EE264307C800949740 /* SquareShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareShop.swift; sourceTree = "<group>"; };
 		A97BC5F026430D8000949740 /* UpgradesShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradesShop.swift; sourceTree = "<group>"; };
 		A97BC5F226430F3500949740 /* InfoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPage.swift; sourceTree = "<group>"; };
+		A97BC5F4264B068700949740 /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				7F881BC3263CA2190024CD1F /* GameScene.swift */,
 				A97BC5EC2642FE9200949740 /* ShopMenu.swift */,
 				A97BC5EE264307C800949740 /* SquareShop.swift */,
+				A97BC5F4264B068700949740 /* TODO.swift */,
 				A97BC5F026430D8000949740 /* UpgradesShop.swift */,
 				A97BC5F226430F3500949740 /* InfoPage.swift */,
 				7F881B55263B9F030024CD1F /* MainMenu.swift */,
@@ -318,6 +321,7 @@
 				A97BC5ED2642FE9200949740 /* ShopMenu.swift in Sources */,
 				7F881B56263B9F030024CD1F /* MainMenu.swift in Sources */,
 				7F881BA8263BA2590024CD1F /* ShopScene.swift in Sources */,
+				A97BC5F5264B068700949740 /* TODO.swift in Sources */,
 				7F881BC4263CA21A0024CD1F /* GameScene.swift in Sources */,
 				A97BC5F126430D8000949740 /* UpgradesShop.swift in Sources */,
 				7F881BA7263BA2590024CD1F /* ShopButton.swift in Sources */,

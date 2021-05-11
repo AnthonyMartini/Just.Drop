@@ -29,7 +29,7 @@ class ShopScene : CScene{
         NotificationCenter.default.addObserver(self, selector: #selector(ShopScene.AdPlayed), name: NSNotification.Name("Update"), object: nil)
     }
     @objc func AdPlayed(){
-        stash = UserDefaults.standard.integer(forKey: "Stash")
+        stash = UserDefaults.standard.integer(forKey: "Coins")
         updateStash()
     }
     

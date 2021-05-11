@@ -9,12 +9,20 @@ import SpriteKit
 import GameplayKit
 
 class MainMenu: MenuScene{
-    
-    
-    
-    
-    
+
     var highScore = 0
+    
+    var colors : [String: UIColor] = [
+        "Red" : .red,
+        "Blue" : .blue,
+        "Green" : .green,
+        "Yellow" : .yellow,
+        "Orange" : .orange,
+        "Purple" : .magenta,
+        "Magenta" : .magenta,
+        "Cyan" : .cyan,
+        "Black" : .black,
+    ]
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -32,10 +40,13 @@ class MainMenu: MenuScene{
         let spin = SKAction.rotate(toAngle: .pi / -2.00, duration: 0.25)
         let upSpin = SKAction.group([up,spin])
         
+        
+        let squareColor = UserDefaults.standard.string(forKey: "SquareColor") ?? "Red"
+        
         // Bouncing Square
         
         let bounceSprite = SKSpriteNode()
-        bounceSprite.color = .red
+        bounceSprite.color = colors[squareColor] ?? .red
         bounceSprite.size = CGSize(width: 125 * multiplier, height: 125 * multiplier)
         bounceSprite.position = CGPoint(x: 0, y: 100 * multiplier)
         Cont.addChild(bounceSprite)
