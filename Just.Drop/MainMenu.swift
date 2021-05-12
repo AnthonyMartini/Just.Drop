@@ -11,6 +11,9 @@ import GameplayKit
 class MainMenu: MenuScene{
 
     var highScore = 0
+    var playedBefore = false
+    
+    var leaderboardButton = MenuButton()
     
     var colors : [String: UIColor] = [
         "Red" : .red,
@@ -68,7 +71,7 @@ class MainMenu: MenuScene{
         Cont.addChild(playButton)
         
         let ShopButton = MenuButton(imageNamed: "Shop")
-        ShopButton.Create(CGSize(width: 75 * multiplier, height: 75 * multiplier), CGPoint(x: 175 * multiplier, y: -175 * multiplier), name: "Shop", trgt: ShopMenu(size: self.size))
+        ShopButton.Create(CGSize(width: 75 * multiplier, height: 75 * multiplier), CGPoint(x: 175 * multiplier, y: -175 * multiplier), name: "Shop", trgt: Shop(size: self.size))
         MenuButtons.append(ShopButton)
 
         Cont.addChild(ShopButton)
@@ -78,8 +81,19 @@ class MainMenu: MenuScene{
         MenuButtons.append(InfoButton)
         Cont.addChild(InfoButton)
         
+        
+        leaderboardButton = MenuButton(imageNamed: "Leaderboard")
+        leaderboardButton.Create(CGSize(width: 360 * multiplier, height: 90 * multiplier), CGPoint(x: 0, y: -300 * multiplier),name: "Play", trgt: GameScene(size: self.size))
+        Cont.addChild(leaderboardButton)
        
         
+        
+        
+        playedBefore = UserDefaults.standard.bool(forKey: "Before")
+        if playedBefore == false{
+            UserDefaults.standard.setValue(true, forKey: "Before")
+            moveScenes(InfoPage())
+        }
         
         
         
@@ -95,6 +109,11 @@ class MainMenu: MenuScene{
         for touch in touches{
             
             let pos = touch.location(in: Cont)
+            
+            if leaderboardButton.contains(pos){
+                firstTouch = "Leader"
+                leaderboardButton.fadeOut()
+            }
            
         }
         super.touchesBegan(touches, with: event)
@@ -103,6 +122,11 @@ class MainMenu: MenuScene{
         for touch in touches{
             let pos = touch.location(in: Cont)
            
+            if leaderboardButton.contains(pos) && firstTouch == "Leader"{
+                //Leaderboard Stuff
+                NotificationCenter.default.post(name: NSNotification.Name("CheckScore"), object: nil)
+            }
+            leaderboardButton.fadeIn()
           
         }
         

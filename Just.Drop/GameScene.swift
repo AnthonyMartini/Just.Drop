@@ -18,9 +18,12 @@ class GameScene : CScene, SKPhysicsContactDelegate{
     var coinTick = 0
     var obstacleTick = 0
     
+    var gamesPlayed = 0
+    
     var gameSpeed = 11.0
     var gameSpeedTemp = 11.0
     var obstacleFrequency = 9
+    var obstacleRandom = 5
     var coinFrequency = 7
     var obstacleCountdown = 9
     var coinCountdown = 7
@@ -68,6 +71,11 @@ class GameScene : CScene, SKPhysicsContactDelegate{
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         self.physicsWorld.contactDelegate = self
+        
+        gamesPlayed = UserDefaults.standard.integer(forKey: "GamesPlayed")
+        gamesPlayed += 1
+        UserDefaults.standard.setValue(gamesPlayed, forKey: "GamesPlayed")
+        
         
         gameTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(GameUpdate), userInfo: nil, repeats: true)
         //Labels
@@ -137,7 +145,7 @@ class GameScene : CScene, SKPhysicsContactDelegate{
             gameSpeed = gameSpeedTemp
             if obstacleTick == obstacleCountdown{
                 obstacleTick = 0
-                obstacleCountdown = obstacleFrequency + Int.random(in: 0...5)
+                obstacleCountdown = obstacleFrequency + Int.random(in: 0...obstacleRandom)
                 createPiller(CGPoint(x: 562.5 * multiplier, y: -666.666 * multiplier),false)
                 if coinTick == coinCountdown{
                     coinTick = 0
@@ -189,25 +197,34 @@ class GameScene : CScene, SKPhysicsContactDelegate{
             obstacleFrequency = 7
         }
         if score == 80{
-            gameSpeedTemp = 9
+            obstacleRandom = 4
         }
         if score == 100{
-            obstacleFrequency = 7
+            gameSpeedTemp = 9
         }
         if score == 120{
-            gameSpeedTemp = 8
+            obstacleFrequency = 7
         }
         if score == 140{
-            obstacleFrequency = 6
+            gameSpeedTemp = 8
         }
         if score == 160{
-            gameSpeedTemp = 7
+            obstacleFrequency = 6
         }
         if score == 180{
-            obstacleFrequency = 5
+            gameSpeedTemp = 7
         }
         if score == 200{
+            obstacleRandom = 3
+        }
+        if score == 230{
+            obstacleFrequency = 5
+        }
+        if score == 260{
             gameSpeedTemp = 6
+        }
+        if score == 300{
+            gameSpeedTemp = 5
         }
         
     }
@@ -268,10 +285,19 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         gameTimer.invalidate()
         
         //Turn off touches for a second or two
+        self.isUserInteractionEnabled = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1400), execute: {
+            self.isUserInteractionEnabled = true
+        })
         
         for child in Cont.children{
             child.run(SKAction.sequence([SKAction.fadeAlpha(to: 0, duration: 0.6), SKAction.removeFromParent()]))
             
+        }
+        
+        if gamesPlayed == 4{
+            AppStoreReviewManager.requestReviewIfAppropriate()
         }
         
         //New Objects
@@ -292,6 +318,7 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         if score > highScore{
             highScore = score
             UserDefaults.standard.setValue(highScore, forKey: "HighScore")
+            NotificationCenter.default.post(name: NSNotification.Name("SendScore"), object: nil)
         }
         
         let highscoreLabel = SKLabelNode(text: "HighScore: \(highScore)")
@@ -343,11 +370,8 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         for touch in touches{
             let pos = touch.location(in: Cont)
             if jumpButton.contains(pos) && firsttouch == "Jump" && jumpenabled == true{
-                let up = SKAction.moveBy(x: 0, y: 400 * multiplier, duration: 0.4)
-                let spin = SKAction.rotate(byAngle: .pi / -2.00, duration: 0.25)
-                let upSpin = SKAction.group([up,spin])
-                
-                bounceSprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 700 * multiplier))
+                bounceSprite.physicsBody?.velocity = CGVector.zero
+                bounceSprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 600 * multiplier))
                 jumpenabled = false
             }
             

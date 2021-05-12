@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class SquareShop: ShopScene{
+class Shop: ShopScene{
     
     var backButton = MenuButton()
     var VideoButton = MenuButton(imageNamed: "Video")
@@ -125,7 +125,7 @@ class SquareShop: ShopScene{
             updateStash()
             button.costLabel.removeFromParent()
             button.bought = true
-            UserDefaults.standard.setValue(stash, forKey: "Stash")
+            UserDefaults.standard.setValue(stash, forKey: "Coins")
             
             chosenSquare = button.imagename
             UserDefaults.standard.setValue(chosenSquare, forKey: "SquareColor")
@@ -173,7 +173,7 @@ class SquareShop: ShopScene{
         for touch in touches{
             let pos = touch.location(in: Cont)
             if backButton.contains(pos) && firstTouch == "Back"{
-                moveScenes(ShopMenu())
+                moveScenes(MainMenu())
             }
             backButton.fadeIn()
             

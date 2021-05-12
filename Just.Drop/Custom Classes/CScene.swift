@@ -23,7 +23,7 @@ class CScene : SKScene{
         adCounted = UserDefaults.standard.integer(forKey: "AdsCounted")
         
         //Typical Scene Load Stuff, should probably move to its own class
-        backgroundColor = .cyan
+        backgroundColor = UIColor(red: 40/255, green: 175/255, blue: 175/255, alpha: 1.0)
         anchorPoint = CGPoint(x: 0, y: 0)
         screenHeight = UIScreen.main.nativeBounds.height
         screenWidth = UIScreen.main.nativeBounds.width
