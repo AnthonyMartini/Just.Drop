@@ -53,9 +53,14 @@ class Shop: ShopScene{
         //Buttons -- Change Buttons Destinations
         
         backButton = MenuButton(imageNamed: "Back")
-        backButton.Create(CGSize(width: 200 * multiplier, height: 100 * multiplier), CGPoint(x: 0 * multiplier, y: -420 * multiplier),name: "Back", trgt: MainMenu(size: self.size))
+        backButton.Create(CGSize(width: 200 * multiplier, height: 100 * multiplier), CGPoint(x: -150 * multiplier, y: -420 * multiplier),name: "Back", trgt: MainMenu(size: self.size))
        
         Cont.addChild(backButton)
+        
+        VideoButton.Create(CGSize(width: 200 * multiplier, height: 100 * multiplier), CGPoint(x: 150 * multiplier, y: -420 * multiplier),name: "Back", trgt: MainMenu(size: self.size))
+       
+        Cont.addChild(VideoButton)
+        
         
         
         //red Square
@@ -160,6 +165,10 @@ class Shop: ShopScene{
                 firstTouch = "Back"
                 backButton.fadeOut()
             }
+            if VideoButton.contains(pos){
+                firstTouch = "Video"
+                VideoButton.fadeOut()
+            }
             for button in ShopButtons{
                 if button.contains(pos){
                     button.fadeOut()
@@ -174,6 +183,11 @@ class Shop: ShopScene{
             let pos = touch.location(in: Cont)
             if backButton.contains(pos) && firstTouch == "Back"{
                 moveScenes(MainMenu())
+            }
+            
+            if VideoButton.contains(pos) && firstTouch == "Video"{
+                //Video Stuff
+                NotificationCenter.default.post(name: NSNotification.Name("Video"), object: nil)
             }
             backButton.fadeIn()
             

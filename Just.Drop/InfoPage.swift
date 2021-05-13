@@ -21,7 +21,7 @@ class InfoPage: CScene{
         
         //Labels
         let Title = SKLabelNode(text: "Info")
-        createLabel(Title, 70 * multiplier, CGPoint(x: 0, y: 450 * multiplier),font: "Verdana-Bold",color: .white)
+        createLabel(Title, 70 * multiplier, CGPoint(x: 0, y: 440 * multiplier),font: "Verdana-Bold",color: .white)
         
        //Start of Main Content
         let howToLabel = SKLabelNode(text: "How To Play")
@@ -52,7 +52,7 @@ class InfoPage: CScene{
         let divider3 = SKSpriteNode()
         divider3.color = .white
         divider3.size = CGSize(width: 550 * multiplier, height: 5 * multiplier)
-        divider3.position = CGPoint(x: 0, y: -45 * multiplier * multiplier)
+        divider3.position = CGPoint(x: 0, y: -45 * multiplier)
         Cont.addChild(divider3)
         
         let partThree = SKSpriteNode(imageNamed: "HowTo3")
@@ -64,7 +64,7 @@ class InfoPage: CScene{
         let divider4 = SKSpriteNode()
         divider4.color = .white
         divider4.size = CGSize(width: 550 * multiplier, height: 5 * multiplier)
-        divider4.position = CGPoint(x: 0, y: -250 * multiplier * multiplier)
+        divider4.position = CGPoint(x: 0, y: -250 * multiplier)
         Cont.addChild(divider4)
         
         //End of Main Content- - - - - - - - - - - - - - - - - - - -

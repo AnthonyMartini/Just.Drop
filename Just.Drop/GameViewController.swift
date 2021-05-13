@@ -45,6 +45,15 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate {
          NotificationCenter.default.addObserver(self, selector: #selector(GameViewController.checkScore), name: NSNotification.Name("CheckScore"), object: nil)
         
         
+        /*
+         NotificationCenter.default.addObserver(self, selector: #selector(GameViewController.InterAd), name: NSNotification.Name("Inter"), object: nil)
+         
+         NotificationCenter.default.addObserver(self, selector: #selector(GameViewController.presentvideoad), name: NSNotification.Name("video"), object: nil)
+         
+         */
+        
+        
+        
     }
     
     //Game Center Stuff
