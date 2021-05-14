@@ -11,7 +11,9 @@
  
  
  Main Game:
- -  Charged up Boost Ability
+-   Redo platform spawning
+-   Make Jump and Boost Work(almost no jump on large devices)
+-   Subsequently change game to fit new values
  
  
  Other:

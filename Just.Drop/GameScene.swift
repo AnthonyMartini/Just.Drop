@@ -11,12 +11,17 @@ import SpriteKit
 class GameScene : CScene, SKPhysicsContactDelegate{
     
     var bounceSprite = SKSpriteNode()
+    var circle = SKShapeNode()
     
     var gameTimer = Timer()
     
     var gameTick = 0.0
     var coinTick = 0
     var obstacleTick = 0
+    
+    
+    var circleTick = 0
+    var boostReady = false
     
     var gamesPlayed = 0
     
@@ -127,6 +132,11 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         boostButton.zPosition = 4
         Cont.addChild(boostButton)
         
+        circle = SKShapeNode(circleOfRadius: 50)
+        circle.strokeColor = .red
+        circle.lineWidth = 10 * multiplier
+        Cont.addChild(circle)
+        
         
         
     }
@@ -134,6 +144,18 @@ class GameScene : CScene, SKPhysicsContactDelegate{
     @objc func GameUpdate(){
         
         gameTick += 1
+        if boostReady == false{
+            circleTick += 1
+            let angle : CGFloat = .pi * CGFloat(circleTick) / 50
+            circle.path = UIBezierPath(arcCenter: CGPoint(x: 125 * multiplier, y: -350 * multiplier), radius: CGFloat(50 * multiplier), startAngle: 0, endAngle: angle, clockwise: true).cgPath
+            if circleTick == 100{
+                boostReady = true
+                circle.run(SKAction.repeatForever(SKAction.sequence([SKAction.fadeOut(withDuration: 1), SKAction.fadeIn(withDuration: 1)])))
+            }
+        }
+        
+        
+        
         
         
         if gameTick == gameSpeed {
@@ -348,10 +370,12 @@ class GameScene : CScene, SKPhysicsContactDelegate{
             let pos = touch.location(in: Cont)
             if jumpButton.contains(pos){
                 firsttouch = "Jump"
+                jumpButton.run(SKAction.fadeAlpha(to: 0.4, duration: 0.3))
 
             }
             if boostButton.contains(pos){
                 firsttouch = "Boost"
+                boostButton.run(SKAction.fadeAlpha(to: 0.4, duration: 0.3))
             }
             
             if playAgain.contains(pos){
@@ -377,6 +401,18 @@ class GameScene : CScene, SKPhysicsContactDelegate{
             
             //Boost Button
             
+            if boostButton.contains(pos) && firsttouch == "Boost"{
+                
+                if boostReady == true{
+                    circle.removeAllActions()
+                    circle.alpha = 1
+                    bounceSprite.physicsBody?.velocity = CGVector.zero
+                    bounceSprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 1900 * multiplier))
+                    boostReady = false
+                    circleTick = 0
+                }
+            }
+            
             if playAgain.contains(pos) && firsttouch == "PlayAgain"{
                 moveScenes(GameScene())
             }
@@ -385,6 +421,8 @@ class GameScene : CScene, SKPhysicsContactDelegate{
             }
             playAgain.run(SKAction.fadeIn(withDuration: 0.3))
             mainMenu.run(SKAction.fadeIn(withDuration: 0.3))
+            jumpButton.run(SKAction.fadeIn(withDuration: 0.3))
+            boostButton.run(SKAction.fadeIn(withDuration: 0.3))
             
         }
     }
