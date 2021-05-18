@@ -40,9 +40,6 @@ class MainMenu: MenuScene{
         //Actions
         let up = SKAction.moveBy(x: 0, y: 150 * multiplier, duration: 0.4)
         let down = SKAction.moveBy(x: 0, y: -150 * multiplier, duration: 0.4)
-        let spin = SKAction.rotate(toAngle: .pi / -2.00, duration: 0.25)
-        let upSpin = SKAction.group([up,spin])
-        
         
         let squareColor = UserDefaults.standard.string(forKey: "SquareColor") ?? "Red"
         
@@ -55,7 +52,7 @@ class MainMenu: MenuScene{
         Cont.addChild(bounceSprite)
         
         bounceSprite.run(SKAction.repeatForever( SKAction.sequence([
-            upSpin,
+            up,
             down,
             SKAction.wait(forDuration: 1)
             

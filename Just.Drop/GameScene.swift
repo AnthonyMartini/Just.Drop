@@ -87,10 +87,10 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         
         coins = UserDefaults.standard.integer(forKey: "Coins")
         coinLabel.text = "\(coins) coins"
-        createLabel(coinLabel, 25 * multiplier, CGPoint(x: 200 * multiplier, y: 440 * multiplier),font: "Verdana-Bold",color: .white)
+        createLabel(coinLabel, 25 * multiplier, CGPoint(x: 200 * multiplier, y: 430 * multiplier),font: "Verdana-Bold",color: .white)
         
         scoreLabel = SKLabelNode(text: "0")
-        createLabel(scoreLabel, 70 * multiplier, CGPoint(x: 0, y: 440 * multiplier),font: "Verdana-Bold",color: .white)
+        createLabel(scoreLabel, 90 * multiplier, CGPoint(x: 0, y: 400 * multiplier),font: "Verdana-Bold",color: .white)
         
         //Square Color:
         let squareColor = UserDefaults.standard.string(forKey: "SquareColor") ?? "Red"
@@ -112,10 +112,10 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         
         //Create starting bars
         
-        createPiller(CGPoint(x: -212.5 * multiplier, y: 0 * multiplier),true)
-        createPiller(CGPoint(x: 112.5 * multiplier, y: -266.667 * multiplier),true)
-        createPiller(CGPoint(x: 412.5 * multiplier, y: -533.333 * multiplier),true)
-        
+        createPiller(CGPoint(x: -300 * multiplier, y: 70 * multiplier),true)
+        createPiller(CGPoint(x: 0 * multiplier, y: -200 * multiplier),true)
+        createPiller(CGPoint(x: 300 * multiplier, y: -470 * multiplier),true)
+        createPiller(CGPoint(x: 600 * multiplier, y: -740 * multiplier),true)
         
         //Jump Buttons
         
@@ -135,6 +135,7 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         circle = SKShapeNode(circleOfRadius: 50)
         circle.strokeColor = .red
         circle.lineWidth = 10 * multiplier
+        circle.zPosition = -1
         Cont.addChild(circle)
         
         
@@ -144,6 +145,8 @@ class GameScene : CScene, SKPhysicsContactDelegate{
     @objc func GameUpdate(){
         
         gameTick += 1
+        
+        
         if boostReady == false{
             circleTick += 1
             let angle : CGFloat = .pi * CGFloat(circleTick) / 50
@@ -159,6 +162,9 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         
         
         if gameTick == gameSpeed {
+            if bounceSprite.position.x != -100 * multiplier{
+                bounceSprite.position.x = -100 * multiplier
+            }
             print(gameTick)
             print(obstacleTick)
             coinTick += 1
@@ -168,7 +174,7 @@ class GameScene : CScene, SKPhysicsContactDelegate{
             if obstacleTick == obstacleCountdown{
                 obstacleTick = 0
                 obstacleCountdown = obstacleFrequency + Int.random(in: 0...obstacleRandom)
-                createPiller(CGPoint(x: 562.5 * multiplier, y: -666.666 * multiplier),false)
+                createPiller(CGPoint(x: 750 * multiplier, y: -875 * multiplier),false)
                 if coinTick == coinCountdown{
                     coinTick = 0
                     coinCountdown = coinFrequency + Int.random(in: 0...5)
@@ -178,9 +184,9 @@ class GameScene : CScene, SKPhysicsContactDelegate{
                 if coinTick == coinCountdown{
                     coinTick = 1
                     coinCountdown = coinFrequency + Int.random(in: 0...5)
-                    createCoin(CGPoint(x: 562.5 * multiplier, y: -626.666))
+                    createCoin(CGPoint(x: 750 * multiplier, y: -835 * multiplier))
                 }
-                createPiller(CGPoint(x: 562.5 * multiplier, y: -666.666 * multiplier),true)
+                createPiller(CGPoint(x: 750 * multiplier, y: -875 * multiplier),true)
             }
         }
         
@@ -203,7 +209,7 @@ class GameScene : CScene, SKPhysicsContactDelegate{
         coin.physicsBody?.categoryBitMask = CategoryMask.other.rawValue
         
         Cont.addChild(coin)
-        coin.run(SKAction.sequence([SKAction.move(by: CGVector(dx: -1200 * multiplier, dy: 1066.667), duration: TimeInterval(4 * (gameSpeed / 10))), SKAction.removeFromParent()]))
+        coin.run(SKAction.sequence([SKAction.move(by: CGVector(dx: -1200 * multiplier, dy: 1080 * multiplier), duration: TimeInterval(4 * (gameSpeed / 10))), SKAction.removeFromParent()]))
     }
     func updateScore(){
         score += 1
@@ -267,10 +273,13 @@ class GameScene : CScene, SKPhysicsContactDelegate{
             newpillar.physicsBody?.categoryBitMask = CategoryMask.good.rawValue
         }
         
-        Cont.addChild(newpillar)
+        
+        newpillar.physicsBody?.friction = 0
         newpillar.physicsBody?.isDynamic = false
         newpillar.physicsBody?.contactTestBitMask = CategoryMask.square.rawValue
-        newpillar.run(SKAction.sequence([SKAction.move(by: CGVector(dx: -1200 * multiplier, dy: 1066.667), duration: TimeInterval(4.0 * (gameSpeed / 10))), SKAction.removeFromParent()]))
+        Cont.addChild(newpillar)
+        newpillar.run(SKAction.sequence([SKAction.move(by: CGVector(dx: -1200 * multiplier, dy: 1080 * multiplier), duration: TimeInterval(4.0 * (gameSpeed / 10))), SKAction.removeFromParent()]))
+        
     }
     
     
@@ -317,16 +326,18 @@ class GameScene : CScene, SKPhysicsContactDelegate{
             child.run(SKAction.sequence([SKAction.fadeAlpha(to: 0, duration: 0.6), SKAction.removeFromParent()]))
             
         }
+        circle.alpha = 0
         
         if gamesPlayed == 4{
             AppStoreReviewManager.requestReviewIfAppropriate()
         }
         
+        
         //New Objects
         
         
         let gameOverLabel = SKLabelNode(text: "Game Over")
-        createLabel(gameOverLabel, 80 * multiplier, CGPoint(x: 0, y: 440 * multiplier),font: "Verdana-Bold",color: .white,alpha: 0)
+        createLabel(gameOverLabel, 80 * multiplier, CGPoint(x: 0, y: 430 * multiplier),font: "Verdana-Bold",color: .white,alpha: 0)
         gameOverLabel.run(SKAction.sequence([SKAction.wait(forDuration: 0.6),SKAction.fadeIn(withDuration: 0.6)]))
         
         

@@ -37,7 +37,7 @@ class Shop: ShopScene{
         
         //Labels
         let Title = SKLabelNode(text: "Squares")
-        createLabel(Title, 70 * multiplier, CGPoint(x: 0, y: 450 * multiplier),font: "Verdana-Bold",color: .white)
+        createLabel(Title, 70 * multiplier, CGPoint(x: 0, y: 440 * multiplier),font: "Verdana-Bold",color: .white)
         
         //Need to find out what word I used for Just.Drop original
         
